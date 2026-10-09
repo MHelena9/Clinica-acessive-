@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha conta | ML Odontologia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mockup.css">
+    <script>
+        (function () {
+            try {
+                var texto = localStorage.getItem('acessibilidade-texto');
+                var contraste = localStorage.getItem('acessibilidade-contraste');
+                if (texto === '1') document.documentElement.classList.add('texto-medio');
+                if (texto === '2') document.documentElement.classList.add('texto-grande');
+                if (contraste === '1') document.documentElement.classList.add('contraste-alto');
+            } catch (erro) {}
+        })();
+    </script>
+</head>
+<body>
+    <a href="#conteudo-principal" class="pular-link">Pular para o conteúdo</a>
+    <header class="cabecalho">
+        <div class="barra-acessibilidade">
+            <nav class="barra-acessibilidade-nav" aria-label="Acessibilidade">
+                <p class="barra-acessibilidade-titulo">Acessibilidade</p>
+                <ul class="barra-acessibilidade-lista">
+                    <li><button type="button" id="acessibilidade-diminuir" aria-label="Diminuir tamanho do texto">A-</button></li>
+                    <li><button type="button" id="acessibilidade-aumentar" aria-label="Aumentar tamanho do texto">A+</button></li>
+                    <li><button type="button" id="acessibilidade-contraste" aria-pressed="false" aria-label="Alternar contraste de cores">Contraste</button></li>
+                </ul>
+            </nav>
+            <p id="acessibilidade-status" class="oculto-visualmente" aria-live="polite"></p>
+        </div>
+        <nav class="menu-principal" aria-label="Menu principal">
+            <a href="index.html" class="logo-link">
+                <svg class="logo-dente" viewBox="0 0 40 44" aria-hidden="true" focusable="false">
+                    <path d="M12 6c-6 0-9 4-9 9 0 4 2 6 3 11 1 6 2 14 5 16 1 1 3 0 3-2l1-6c0-2 2-2 2 0l1 6c0 2 2 3 3 2 3-2 4-10 5-16 1-5 3-7 3-11 0-5-3-9-9-9-2 0-3 1-4 2-1-1-2-2-4-2z" fill="none" stroke="#a3823f" stroke-width="2.2"/>
+                </svg>
+                <span class="logo-texto"><strong>Marria Luiza</strong><span>Odontologia especializada</span></span>
+            </a>
+            <ul class="menu-lista">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="conta.html" aria-current="page">Minha conta</a></li>
+            </ul>
+            <p class="chip-usuario" id="chip-usuario">Paciente</p>
+            <button type="button" class="botao botao-linha" id="botao-sair">Sair</button>
+        </nav>
+    </header>
+    <main id="conteudo-principal" class="pagina">
+        <h1>Minha conta</h1>
+        <p class="pagina-intro" id="conta-intro">Acompanhe seus pedidos de consulta.</p>
+        <p id="status-lista" class="oculto-visualmente" aria-live="polite"></p>
+        <div id="lista-pedidos" class="grade-pedidos"></div>
+        <a class="botao botao-dourado" href="index.html#contato">Novo pedido na home</a>
+    </main>
+    <footer class="rodape"><p class="rodape-inferior">© 2026 ML Odontologia.</p></footer>
+    <script src="mockup.js"></script>
+    <script>
+        const usuario = obterSessao() || { nome: 'Ana Souza', papel: 'paciente' };
+        document.getElementById('chip-usuario').textContent = usuario.nome;
+        document.getElementById('conta-intro').textContent = 'Olá, ' + usuario.nome + '. Acompanhe seus pedidos de consulta.';
+        function classeStatus(status) {
+            if (status === 'Confirmado') return 'status-confirmado';
+            if (status === 'Cancelado') return 'status-cancelado';
+            return 'status-pendente';
+        }
+        function desenhar() {
+            const lista = obterPedidos().filter(function (item) {
+                return item.paciente === usuario.nome || (usuario.nome === 'Ana Souza' && item.paciente === 'Ana Souza');
+            });
+            const caixa = document.getElementById('lista-pedidos');
+            caixa.innerHTML = '';
+            if (!lista.length) {
+                caixa.innerHTML = '<p>Você ainda não tem pedidos.</p>';
+                return;
+            }
+            lista.forEach(function (pedido) {
+                const artigo = document.createElement('article');
+                artigo.className = 'pedido';
+                artigo.innerHTML = '<div class="pedido-topo"><h2>' + pedido.especialista + '</h2><span class="status ' + classeStatus(pedido.status) + '">' + pedido.status + '</span></div><p>' + pedido.data + ' · ' + pedido.turno + '</p><div class="pedido-acoes"></div>';
+                if (pedido.status !== 'Cancelado') {
+                    const botao = document.createElement('button');
+                    botao.type = 'button';
+                    botao.className = 'botao botao-perigo';
+                    botao.textContent = 'Cancelar pedido';
+                    botao.addEventListener('click', function () {
+                        const todos = obterPedidos();
+                        const alvo = todos.find(function (item) { return item.id === pedido.id; });
+                        if (alvo) alvo.status = 'Cancelado';
+                        salvarPedidos(todos);
+                        document.getElementById('status-lista').textContent = 'Pedido cancelado.';
+                        desenhar();
+                    });
+                    artigo.querySelector('.pedido-acoes').appendChild(botao);
+                }
+                caixa.appendChild(artigo);
+            });
+        }
+        desenhar();
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar | ML Odontologia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mockup.css">
+    <script>
+        (function () {
+            try {
+                var texto = localStorage.getItem('acessibilidade-texto');
+                var contraste = localStorage.getItem('acessibilidade-contraste');
+                if (texto === '1') document.documentElement.classList.add('texto-medio');
+                if (texto === '2') document.documentElement.classList.add('texto-grande');
+                if (contraste === '1') document.documentElement.classList.add('contraste-alto');
+            } catch (erro) {}
+        })();
+    </script>
+</head>
+<body>
+    <a href="#conteudo-principal" class="pular-link">Pular para o conteúdo</a>
+    <header class="cabecalho">
+        <div class="barra-acessibilidade">
+            <nav class="barra-acessibilidade-nav" aria-label="Acessibilidade">
+                <p class="barra-acessibilidade-titulo">Acessibilidade</p>
+                <ul class="barra-acessibilidade-lista">
+                    <li><button type="button" id="acessibilidade-diminuir" aria-label="Diminuir tamanho do texto">A-</button></li>
+                    <li><button type="button" id="acessibilidade-aumentar" aria-label="Aumentar tamanho do texto">A+</button></li>
+                    <li><button type="button" id="acessibilidade-contraste" aria-pressed="false" aria-label="Alternar contraste de cores">Contraste</button></li>
+                </ul>
+            </nav>
+            <p id="acessibilidade-status" class="oculto-visualmente" aria-live="polite"></p>
+        </div>
+        <nav class="menu-principal" aria-label="Menu principal">
+            <a href="index.html" class="logo-link">
+                <svg class="logo-dente" viewBox="0 0 40 44" aria-hidden="true" focusable="false">
+                    <path d="M12 6c-6 0-9 4-9 9 0 4 2 6 3 11 1 6 2 14 5 16 1 1 3 0 3-2l1-6c0-2 2-2 2 0l1 6c0 2 2 3 3 2 3-2 4-10 5-16 1-5 3-7 3-11 0-5-3-9-9-9-2 0-3 1-4 2-1-1-2-2-4-2z" fill="none" stroke="#a3823f" stroke-width="2.2"/>
+                </svg>
+                <span class="logo-texto"><strong>Marria Luiza</strong><span>Odontologia especializada</span></span>
+            </a>
+            <ul class="menu-lista">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="entrar.html" aria-current="page">Entrar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="conteudo-principal" class="pagina">
+        <section class="cartao form-estreito" aria-labelledby="entrar-titulo">
+            <h1 id="entrar-titulo">Entrar na sua conta</h1>
+            <p class="pagina-intro">Paciente, secretaria e admin entram por aqui. A home continua pública.</p>
+            <div class="abas" role="tablist" aria-label="Tipo de acesso">
+                <button type="button" class="aba" id="aba-entrar" role="tab" aria-selected="true" aria-controls="painel-entrar">Entrar</button>
+                <button type="button" class="aba" id="aba-criar" role="tab" aria-selected="false" aria-controls="painel-criar">Criar conta</button>
+            </div>
+            <form id="painel-entrar" role="tabpanel" aria-labelledby="aba-entrar">
+                <div class="campo">
+                    <label for="email-entrar">E-mail</label>
+                    <input type="email" id="email-entrar" autocomplete="username" required>
+                    <p id="erro-entrar" class="campo-erro"></p>
+                </div>
+                <div class="campo">
+                    <label for="senha-entrar">Senha</label>
+                    <input type="password" id="senha-entrar" autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="botao botao-dourado" style="width:100%">Entrar</button>
+            </form>
+            <form id="painel-criar" role="tabpanel" hidden>
+                <div class="campo">
+                    <label for="nome-criar">Nome completo</label>
+                    <input type="text" id="nome-criar" autocomplete="name" required>
+                </div>
+                <div class="campo">
+                    <label for="email-criar">E-mail</label>
+                    <input type="email" id="email-criar" autocomplete="email" required>
+                    <p id="erro-criar" class="campo-erro"></p>
+                </div>
+                <div class="campo">
+                    <label for="senha-criar">Senha</label>
+                    <input type="password" id="senha-criar" autocomplete="new-password" minlength="6" required>
+                </div>
+                <button type="submit" class="botao botao-dourado" style="width:100%">Criar conta de paciente</button>
+            </form>
+            <div class="contas-demo">
+                <p>Contas de demonstração (senha 123456):</p>
+                <button type="button" data-demo="paciente@ml.com">Paciente — paciente@ml.com</button>
+                <button type="button" data-demo="paula@ml.com">Secretaria — paula@ml.com</button>
+                <button type="button" data-demo="admin@ml.com">Admin — admin@ml.com</button>
+            </div>
+        </section>
+    </main>
+    <footer class="rodape">
+        <p class="rodape-inferior">© 2026 ML Odontologia.</p>
+    </footer>
+    <script src="mockup.js"></script>
+    <script>
+        const abaEntrar = document.getElementById('aba-entrar');
+        const abaCriar = document.getElementById('aba-criar');
+        const painelEntrar = document.getElementById('painel-entrar');
+        const painelCriar = document.getElementById('painel-criar');
+        function mostrarAba(entrar) {
+            abaEntrar.setAttribute('aria-selected', String(entrar));
+            abaCriar.setAttribute('aria-selected', String(!entrar));
+            painelEntrar.hidden = !entrar;
+            painelCriar.hidden = entrar;
+        }
+        abaEntrar.addEventListener('click', function () { mostrarAba(true); });
+        abaCriar.addEventListener('click', function () { mostrarAba(false); });
+        if (new URLSearchParams(window.location.search).get('cadastro') === '1') {
+            mostrarAba(false);
+            document.getElementById('nome-criar').focus();
+        }
+        painelEntrar.addEventListener('submit', function (evento) {
+            evento.preventDefault();
+            const email = document.getElementById('email-entrar').value.trim().toLowerCase();
+            const senha = document.getElementById('senha-entrar').value;
+            const erro = document.getElementById('erro-entrar');
+            const conta = CONTAS[email];
+            if (!conta || conta.senha !== senha) {
+                erro.textContent = 'E-mail ou senha não conferem.';
+                document.getElementById('email-entrar').focus();
+                return;
+            }
+            gravarSessao(email);
+            irParaArea(conta.papel);
+        });
+        painelCriar.addEventListener('submit', function (evento) {
+            evento.preventDefault();
+            const nome = document.getElementById('nome-criar').value.trim();
+            const email = document.getElementById('email-criar').value.trim().toLowerCase();
+            if (nome.length < 3) {
+                document.getElementById('erro-criar').textContent = 'Digite seu nome completo.';
+                return;
+            }
+            CONTAS[email] = { senha: document.getElementById('senha-criar').value, nome: nome, papel: 'paciente' };
+            gravarSessao(email);
+            irParaArea('paciente');
+        });
+        document.querySelectorAll('[data-demo]').forEach(function (botao) {
+            botao.addEventListener('click', function () {
+                gravarSessao(botao.getAttribute('data-demo'));
+                irParaArea(CONTAS[botao.getAttribute('data-demo')].papel);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ML Odontologia | Cuidando do seu sorriso há mais de 30 anos</title>
+    <meta name="description"
+        content="ML Odontologia. Atendimento odontológico completo, implantes, ortodontia e radiologia digital.">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+   <script>
+        // Aplica tamanho e contraste salvos antes da página aparecer
+        (function () {
+            try {
+                var texto = localStorage.getItem('acessibilidade-texto');
+                var contraste = localStorage.getItem('acessibilidade-contraste');
+
+                if (texto === '1') {
+                    document.documentElement.classList.add('texto-medio');
+                }
+                if (texto === '2') {
+                    document.documentElement.classList.add('texto-grande');
+                }
+
+                if (contraste === '1') {
+                    document.documentElement.classList.add('contraste-alto');
+                }
+            } catch (erro) {
+                // Se o navegador bloquear o localStorage, o site segue no visual padrão
+           }
+        })();
+    </script>
+</head>
+
+
+<body>
+
+    <!-- ==================================================
+    LINK DE ACESSIBILIDADE
+   ================================================== -->
+
+    <a href="#conteudo-principal" class="pular-link">
+        Pular para o conteúdo
+    </a>
+
+
+    <!-- ==================================================
+    CABEÇALHO
+    ================================================== -->
+    <header class="cabecalho">
+
+        <div class="barra-acessibilidade">
+
+            <nav
+                class="barra-acessibilidade-nav"
+                aria-label="Acessibilidade">
+
+                <p class="barra-acessibilidade-titulo">
+                   Acessibilidade
+                </p>
+
+                <ul class="barra-acessibilidade-lista">
+
+                    <li>
+                        <button
+                            type="button"
+                            id="acessibilidade-diminuir"
+                            aria-label="Diminuir tamanho do texto">
+                           A-
+                        </button>
+                    </li>
+
+                    <li>
+                        <button
+                            type="button"
+                            id="acessibilidade-aumentar"
+                            aria-label="Aumentar tamanho do texto">
+                            A+
+                       </button>
+                    </li>
+
+                    <li>
+                        <button
+                            type="button"
+                            id="acessibilidade-contraste"
+                            aria-pressed="false"
+                            aria-label="Alternar contraste de cores">
+                            Contraste
+                       </button>
+                    </li>
+
+                    <li>
+                        <button
+                            type="button"
+                            id="acessibilidade-libras"
+                            aria-pressed="false"
+                            aria-label="Ativar tradutor de Libras">
+                            Libras
+                       </button>
+                    </li>
+
+                    <li>
+                        <button
+                            type="button"
+                            id="acessibilidade-leitor"
+                            aria-pressed="false"
+                            aria-label="Ativar ou pausar leitura em voz alta da página">
+                            Leitor de tela
+                       </button>
+                    </li>
+
+                </ul>
+
+            </nav>
+
+            <p
+                id="acessibilidade-status"
+                class="oculto-visualmente"
+               aria-live="polite">
+            </p>
+
+        </div>
+
+
+        <nav class="menu-principal" id="menu-principal" aria-label="Menu principal">
+
+            <div class="logo-area" id="logo">
+
+               <a href="#inicio" class="logo-link">
+
+                    <img
+                        src="img/logo-clara.jpg?v=2"
+                        alt="Marria Luiza Odontologia Especializada — página inicial"
+                        width="1241"
+                        height="487">
+
+                </a>
+
+            </div>
+
+            <ul class="menu-lista" id="menu-lista-principal">
+
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+
+               <li>
+                    <a href="#sobre">Sobre</a>
+                </li>
+
+                <li>
+                    <a href="#diferenciais">Diferenciais</a>
+                </li>
+
+                <li>
+                    <a href="#servicos">Especialidades</a>
+               </li>
+
+                <li>
+                    <a href="#radiologia">Radiologia</a>
+                </li>
+
+                <li>
+                    <a href="#equipe">Equipe</a>
+                </li>
+
+               <li>
+                    <a href="#localizacao">Localização</a>
+                </li>
+
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
+
+            </ul>
+
+            <div class="acoes-cabecalho">
+                <a id="link-criar" class="cabecalho-criar" href="entrar.html?cadastro=1">Criar conta</a>
+                <a id="link-entrar" class="cabecalho-entrar" href="entrar.html">Entrar</a>
+            </div>
+
+            <button
+                type="button"
+                class="menu-alternar"
+                id="menu-alternar"
+                aria-expanded="false"
+                aria-controls="menu-lista-principal">
+
+                <span class="oculto-visualmente">Abrir menu</span>
+
+                <span aria-hidden="true">☰</span>
+            </button>
+
+       </nav>
+
+    </header>
+
+
+    <!-- ==================================================
+    CONTEÚDO PRINCIPAL
+    ================================================== -->
+
+    <main id="conteudo-principal">
+
+        <!-- ==================================================
+        HERO
+        ================================================== -->
+
+        <section id="inicio" class="hero-inicio faixa-verde" aria-labelledby="hero-titulo">
+
+            <div class="hero-topo">
+
+               <p class="hero-selo">
+                    HÁ MAIS DE 30 ANOS CUIDANDO DE SORRISOS
+                </p>
+
+
+                <h1 id="hero-titulo" class="hero-titulo">
+                    Seu sorriso merece experiência, tecnologia e cuidado humanizado.
+                </h1>
+
+
+               <p class="hero-texto">
+                    Tratamentos odontológicos completos com radiologia digital integrada,
+                    proporcionando diagnósticos rápidos e maior segurança para você e sua família.
+                </p>
+
+
+                <ul class="hero-acoes">
+
+                    <li>
+
+                       <a
+                            href="#contato"
+                            class="botao botao-primario">
+
+                            Agendar Consulta
+
+                        </a>
+
+                    </li>
+
+                    <li>
+
+                        <a
+                            href="entrar.html?cadastro=1"
+                            class="botao botao-secundario">
+
+                            Criar conta
+
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <figure class="hero-imagem">
+
+               <img
+                    src="img/hero.jpg"
+                    alt="Equipe da ML Odontologia reunida na recepção da clínica">
+
+            </figure>
+
+        </section>
+
+
+        <!-- ==================================================
+       INDICADORES
+        ================================================== -->
+
+        <section class="indicadores faixa-clara" aria-label="Números da clínica">
+
+            <ul class="indicadores-lista">
+
+                <li class="indicador">
+
+                    <strong class="indicador-numero">
+                       +5.000
+                    </strong>
+
+                    <span class="indicador-legenda">
+                        Pacientes atendidos
+                    </span>
+
+                </li>
+
+
+               <li class="indicador">
+
+                    <strong class="indicador-numero">
+                        +30
+                    </strong>
+
+                    <span class="indicador-legenda">
+                        Anos de experiência
+                    </span>
+
+               </li>
+
+
+                <li class="indicador">
+
+                    <strong class="indicador-numero">
+                        4,9
+                        <span class="oculto-visualmente">de 5 estrelas</span>
+                        <span aria-hidden="true">★</span>
+                    </strong>
+                    <span class="indicador-legenda">
+                        Avaliação dos pacientes
+                    </span>
+
+                </li>
+
+            </ul>
+
+        </section>
+
+        <!-- ==================================================
+        GALERIA
+        ================================================== -->
+
+        <section class="galeria faixa-clara" aria-labelledby="galeria-titulo">
+
+            <header class="galeria-intro">
+
+               <h2 id="galeria-titulo">
+                    Conheça nossa estrutura
+                </h2>
+
+                <p>
+                    Ambientes modernos e preparados para oferecer conforto,
+                    segurança e tecnologia.
+                </p>
+
+            </header>
+
+            <ul class="galeria-lista">
+
+                <li class="galeria-item galeria-item--grande">
+
+                    <img
+                        src="img/Sala de Radiologia.jpg"
+                        alt="Sala de radiologia da clínica, com equipamento de raio-x digital">
+
+               </li>
+
+
+                <li class="galeria-item">
+
+                    <img
+                        src="img/sala de espera.png"
+                        alt="Sala de espera ampla e confortável da clínica">
+
+                </li>
+
+                <li class="galeria-item">
+
+                    <img
+                        src="img/impressora.jpeg"
+                        alt="Equipamento de impressão 3D utilizado na clínica">
+
+                </li>
+
+                <li class="galeria-item galeria-item--grande">
+
+                    <img
+                        src="img/Tomógrafo.jpg"
+                        alt="Tomógrafo odontológico de última geração">
+
+                </li>
+
+
+               <li class="galeria-item">
+
+                    <img
+                        src="img/Radiologia Digital.jpg"
+                        alt="Equipamento de radiologia digital em sala de exames">
+
+                </li>
+
+
+                <li class="galeria-item">
+                    <img
+                        src="img/sala de atendimento.jpg"
+                        alt="Sala de atendimento odontológico equipada">
+
+                </li>
+
+            </ul>
+
+        </section>
+
+        <!-- ==================================================
+        SOBRE
+        ================================================== -->
+
+        <section id="sobre" class="sobre faixa-clara" aria-labelledby="sobre-titulo">
+
+            <figure class="sobre-imagem">
+
+               <img
+                    src="img/antesdepois.png"
+                    alt="Atendimento odontológico sendo realizado pela Dra. Maria Luiza">
+
+            </figure>
+
+
+            <article class="sobre-conteudo">
+
+                <h2 id="sobre-titulo">
+                   Sobre a ML Odontologia
+                </h2>
+
+
+                <p>
+                    Há mais de três décadas, a ML Odontologia oferece tratamentos
+                    odontológicos com excelência, unindo experiência clínica,
+                    tecnologia moderna e atendimento humanizado.
+                </p>
+
+                <p>
+                    Nosso objetivo é proporcionar saúde, conforto e confiança,
+                    acompanhando cada paciente desde o diagnóstico até a conclusão
+                    do tratamento.
+                </p>
+
+            </article>
+
+        </section>
+
+        <!-- ==================================================
+        DIFERENCIAIS
+        ================================================== -->
+
+        <section id="diferenciais" class="diferenciais faixa-cinza" aria-labelledby="diferenciais-titulo">
+
+            <header class="diferenciais-intro">
+
+               <h2 id="diferenciais-titulo">
+                    Por que escolher a ML Odontologia?
+                </h2>
+
+            </header>
+
+
+            <ul class="diferenciais-lista">
+
+                <li class="diferencial-item">
+                    <article class="diferencial-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24">
+
+                            <path
+                               d="M12 21s-7.2-4.5-10-9.1C.4 8.6 1.7 5 5.1 4.2 7.4 3.6 9.7 4.6 12 7c2.3-2.4 4.6-3.4 6.9-2.8 3.4.8 4.7 4.4 3.1 7.7C19.2 16.5 12 21 12 21z" />
+
+                        </svg>
+
+                        <h3>
+                            Atendimento Humanizado
+                        </h3>
+
+                    </article>
+
+               </li>
+
+
+                <li class="diferencial-item">
+
+                    <article class="diferencial-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                           focusable="false"
+                            viewBox="0 0 24 24">
+
+                            <path
+                                d="M9 2v4M9 6h4a2 2 0 0 1 2 2v3a5 5 0 1 1-8 0V8a2 2 0 0 1 2-2zM7 22h8M9 17v5" />
+
+                        </svg>
+
+                        <h3>
+                            Tecnologia Moderna
+                       </h3>
+
+                    </article>
+
+                </li>
+
+
+                <li class="diferencial-item">
+
+                    <article class="diferencial-card">
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24">
+
+                            <path
+                                d="M4 4l7 7M14 4l6 6-8 8-6-6zM9 15l-5 5M4 15l5 5" />
+
+                       </svg>
+
+                        <h3>
+                            Radiologia Própria
+                        </h3>
+
+                    </article>
+
+                </li>
+
+                <li class="diferencial-item">
+
+                    <article class="diferencial-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24">
+                            <circle
+                                cx="12"
+                                cy="8"
+                                r="6" />
+
+                            <path
+                                d="M8 13.5 6 22l6-3 6 3-2-8.5" />
+
+                        </svg>
+                        <h3>
+                            Experiência e Confiança
+                        </h3>
+
+                    </article>
+
+                </li>
+
+            </ul>
+        </section>
+
+
+        <!-- ==================================================
+        SERVIÇOS
+        ================================================== -->
+
+        <section id="servicos" class="servicos faixa-clara" aria-labelledby="servicos-titulo">
+
+           <header class="servicos-intro">
+
+                <h2 id="servicos-titulo">
+                    Nossas Especialidades
+                </h2>
+
+            </header>
+
+
+            <ul class="servicos-lista">
+                <li class="servico-item">
+
+                    <article class="servico-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M12 3c-3 0-5 1.8-5 4.5 0 2 .8 2.7 1 4.5.3 2.3.6 6 2 9 .5 1 1.5 1 2 0l.3-2.5c.2-1.5 1.2-1.5 1.4 0L14 21c.5 1 1.5 1 2 0 1.4-3 1.7-6.7 2-9 .2-1.8 1-2.5 1-4.5C19 4.8 17 3 14 3c-.8 0-1.4.3-2 .8-.6-.5-1.2-.8-2-.8z" />
+
+                        </svg>
+
+                        <h3>
+                            Clínica Geral
+                        </h3>
+
+                   </article>
+
+                </li>
+
+
+                <li class="servico-item">
+
+                    <article class="servico-card">
+
+                        <svg
+                           class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24">
+
+                            <path
+                                d="M4 4h16v6c0 2-1 3-2 3H6c-1 0-2-1-2-3V4z" />
+
+                            <path
+                                d="M6 13v3a3 3 0 0 0 3 3M18 13v3a3 3 0 0 1-3 3M9 19v2M15 19v2" />
+                        </svg>
+
+                        <h3>
+                            Ortodontia
+                        </h3>
+
+                    </article>
+
+                </li>
+
+                <li class="servico-item">
+
+                    <article class="servico-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                           viewBox="0 0 24 24">
+
+                            <path
+                                d="M14 3l7 7-2 2-2-2-6.5 6.5c-1 1-2.5 1-3.5 0-1-1-1-2.5 0-3.5L13.5 6.5l-2-2 2-2z" />
+
+                            <path
+                                d="M4 20l3-1 8-8" />
+
+                        </svg>
+
+                       <h3>
+                            Implantodontia
+                        </h3>
+
+                    </article>
+
+                </li>
+
+
+                <li class="servico-item">
+                    <article class="servico-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                            viewBox="0 0 24 24">
+
+                            <path
+                               d="M12 2l2.9 6.3 6.9.6-5.2 4.6 1.6 6.8L12 16.9 5.8 20.3l1.6-6.8L2.2 8.9l6.9-.6z" />
+
+                        </svg>
+
+                        <h3>
+                            Estética Dental
+                        </h3>
+
+                    </article>
+
+               </li>
+
+
+                <li class="servico-item">
+
+                    <article class="servico-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                           focusable="false"
+                            viewBox="0 0 24 24">
+
+                            <circle
+                                cx="12"
+                                cy="6"
+                                r="3" />
+
+                            <path
+                                d="M6 21v-3a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v3" />
+                        </svg>
+
+                        <h3>
+                            Odontopediatria
+                        </h3>
+
+                    </article>
+
+                </li>
+
+                <li class="servico-item">
+
+                    <article class="servico-card">
+
+                        <svg
+                            class="icone"
+                            aria-hidden="true"
+                            focusable="false"
+                           viewBox="0 0 24 24">
+
+                            <path
+                                d="M5 3v7a5 5 0 0 0 10 0V3M15 10v3a5 5 0 0 1-10 0" />
+
+                            <circle
+                                cx="19"
+                                cy="8"
+                                r="2" />
+
+                       </svg>
+
+                        <h3>
+                            Endodontia
+                        </h3>
+
+                    </article>
+
+                </li>
+
+           </ul>
+
+        </section>
+
+
+        <!-- ==================================================
+        COMO FUNCIONA
+        ================================================== -->
+
+        <section class="processo faixa-verde" aria-labelledby="processo-titulo">
+            <header class="processo-intro">
+
+                <h2 id="processo-titulo">
+                    Como funciona o atendimento
+                </h2>
+
+            </header>
+
+
+           <ol class="processo-lista">
+
+                <li class="processo-item">
+
+                    <article class="processo-card">
+
+                        <h3>
+                            <span class="oculto-visualmente">Etapa 1: </span>
+                            Avaliação
+                        </h3>
+                        <p>
+                            Consulta inicial e exames.
+                        </p>
+
+                    </article>
+
+                </li>
+
+
+               <li class="processo-item">
+
+                    <article class="processo-card">
+
+                        <h3>
+                            <span class="oculto-visualmente">Etapa 2: </span>
+                            Planejamento
+                        </h3>
+
+                        <p>
+                           Definição do melhor tratamento.
+                        </p>
+
+                    </article>
+
+                </li>
+
+
+                <li class="processo-item">
+
+                   <article class="processo-card">
+
+                        <h3>
+                            <span class="oculto-visualmente">Etapa 3: </span>
+                            Execução
+                        </h3>
+
+                        <p>
+                            Tratamento realizado por especialistas.
+                        </p>
+                    </article>
+
+                </li>
+
+
+                <li class="processo-item">
+
+                    <article class="processo-card">
+
+                       <h3>
+                            <span class="oculto-visualmente">Etapa 4: </span>
+                            Acompanhamento
+                        </h3>
+
+                        <p>
+                            Monitoramento contínuo dos resultados.
+                        </p>
+
+                    </article>
+                </li>
+
+            </ol>
+
+        </section>
+
+
+        <!-- ==================================================
+        RADIOLOGIA
+       ================================================== -->
+
+        <section id="radiologia" class="radiologia faixa-cinza" aria-labelledby="radiologia-titulo">
+
+            <header class="radiologia-intro">
+
+                <h2 id="radiologia-titulo">
+                    Radiologia Digital
+                </h2>
+
+           </header>
+
+
+            <figure class="radiologia-imagem">
+
+                <img
+                    src="img/impressora.jpeg"
+                    alt="Equipamento de radiologia digital de alta precisão da clínica">
+
+                <div class="scan-line" aria-hidden="true"></div>
+
+                <div class="scan-info top" aria-hidden="true">
+
+                    <span>
+                        SCAN · 3D
+                    </span>
+
+                    <span>
+                        ● ATIVO
+                   </span>
+
+                </div>
+
+
+                <div class="scan-info bottom" aria-hidden="true">
+
+                    <span>
+                        Alta precisão
+                    </span>
+                    <span>
+                        0.075mm
+                    </span>
+
+                </div>
+
+
+                <div class="tech-tag" aria-hidden="true">
+                    3D PRECISION
+               </div>
+
+            </figure>
+
+
+            <article class="radiologia-info">
+
+                <p>
+                    Equipamentos modernos para exames mais rápidos,
+                    precisos e seguros.
+               </p>
+
+
+                <ul class="radiologia-lista">
+
+                    <li>
+                        Radiografia Panorâmica
+                    </li>
+
+                    <li>
+                       Tomografia Computadorizada
+                    </li>
+
+                    <li>
+                        Documentação Ortodôntica
+                    </li>
+
+                    <li>
+                        Escaneamento Digital
+                    </li>
+                </ul>
+
+            </article>
+
+        </section>
+
+
+        <!-- ==================================================
+        EQUIPE
+       ================================================== -->
+
+        <section id="equipe" class="equipe faixa-clara" aria-labelledby="equipe-titulo">
+
+            <header class="equipe-intro">
+
+                <h2 id="equipe-titulo">
+                    Nossa Equipe
+                </h2>
+
+               <p>
+                    Profissionais preparados para oferecer
+                    atendimento especializado, seguro e humanizado.
+                </p>
+
+            </header>
+
+
+            <!-- GESTÃO -->
+
+           <div class="equipe-gestao">
+
+
+                <!-- PROPRIETÁRIA -->
+
+                <article class="equipe-card equipe-proprietaria">
+
+                    <figure>
+
+                        <img
+                           src="img/diluza.jpeg"
+                            alt="Retrato da Dra. Maria Luiza">
+
+                    </figure>
+
+
+                    <div class="equipe-dados">
+
+                        <span class="equipe-cargo">
+                            Proprietária
+                       </span>
+
+                        <h3>
+                            Dra. Maria Luiza
+                        </h3>
+
+                        <p>
+                            Cirurgiã-Dentista
+                        </p>
+
+                   </div>
+
+                </article>
+
+
+                <!-- ASSISTENTE -->
+
+                <article class="equipe-card equipe-gerencia">
+
+                    <div class="equipe-dados">
+                        <span class="equipe-cargo">
+                            Assistente de Gerência
+                        </span>
+
+                        <h3>
+                            Paula
+                        </h3>
+
+                    </div>
+                </article>
+
+            </div>
+
+
+            <!-- ESPECIALISTAS -->
+
+            <div class="especialistas">
+
+               <header class="especialistas-intro">
+
+                    <h3>
+                        Nossos Especialistas
+                    </h3>
+
+                </header>
+
+
+                <ul class="especialistas-lista">
+                    <li class="especialista-card">
+
+                        <h4>
+                            Dr. Carlos Silva
+                        </h4>
+
+                        <p>
+                            Implantodontia
+                        </p>
+                    </li>
+
+
+                    <li class="especialista-card">
+
+                        <h4>
+                            Dra. Ana Costa
+                        </h4>
+
+                       <p>
+                            Ortodontia
+                        </p>
+
+                    </li>
+
+
+                    <li class="especialista-card">
+
+                        <h4>
+                           Dr. Roberto Mendes
+                        </h4>
+
+                        <p>
+                            Endodontia
+                        </p>
+
+                    </li>
+
+
+                   <li class="especialista-card">
+
+                        <h4>
+                            Dra. Julia Souza
+                        </h4>
+
+                        <p>
+                            Estética
+                        </p>
+
+                   </li>
+
+
+                    <li class="especialista-card">
+
+                        <h4>
+                            Dr. Lucas Lima
+                        </h4>
+
+                        <p>
+                           Odontopediatria
+                        </p>
+
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+        DEPOIMENTOS
+        ================================================== -->
+
+        <section
+            id="depoimentos"
+            class="depoimentos faixa-cinza"
+            aria-labelledby="depoimentos-titulo">
+            <header class="depoimentos-intro">
+
+                <h2 id="depoimentos-titulo">
+                    O que dizem nossos pacientes
+                </h2>
+
+            </header>
+
+
+           <ul class="depoimentos-lista">
+
+                <li>
+
+                    <blockquote class="depoimento">
+
+                        <p>
+                            "Atendimento excelente e profissionais muito atenciosos."
+                        </p>
+
+                   </blockquote>
+
+                </li>
+
+
+                <li>
+
+                    <blockquote class="depoimento">
+
+                        <p>
+                           "Meu tratamento foi perfeito do início ao fim."
+                        </p>
+
+                    </blockquote>
+
+                </li>
+
+
+                <li>
+
+                   <blockquote class="depoimento">
+
+                        <p>
+                            "Estrutura moderna e ambiente acolhedor."
+                        </p>
+
+                    </blockquote>
+
+                </li>
+
+           </ul>
+
+        </section>
+
+
+        <!-- ==================================================
+        FAQ
+        ================================================== -->
+
+        <section id="faq" class="faq faixa-clara" aria-labelledby="faq-titulo">
+            <header class="faq-intro">
+
+                <h2 id="faq-titulo">
+                    Perguntas Frequentes
+                </h2>
+
+            </header>
+
+
+           <ul class="faq-lista">
+
+                <li>
+
+                    <details class="faq-item">
+
+                        <summary>
+                            A clínica atende convênios?
+                        </summary>
+
+                       <p>
+                            Entre em contato para verificar os convênios disponíveis.
+                        </p>
+
+                    </details>
+
+                </li>
+
+
+                <li>
+                    <details class="faq-item">
+
+                        <summary>
+                            Os exames ficam prontos rapidamente?
+                        </summary>
+
+                        <p>
+                            Sim. A maioria possui entrega rápida em formato digital.
+                        </p>
+                    </details>
+
+                </li>
+
+
+                <li>
+
+                    <details class="faq-item">
+
+                       <summary>
+                            Posso fazer exames e tratamento no mesmo local?
+                        </summary>
+
+                        <p>
+                            Sim. A clínica possui estrutura integrada.
+                        </p>
+
+                    </details>
+
+               </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- ==================================================
+        LOCALIZAÇÃO E HORÁRIO
+        ================================================== -->
+        <section id="localizacao" class="localizacao faixa-clara" aria-labelledby="localizacao-titulo">
+
+            <header class="localizacao-intro">
+
+                <h2 id="localizacao-titulo">
+                    Onde estamos
+                </h2>
+
+                <p>
+                   Venha nos visitar ou entre em contato para agendar sua consulta.
+                </p>
+
+            </header>
+
+
+            <div class="localizacao-conteudo">
+
+                <div class="localizacao-mapa">
+
+                   <iframe
+                        title="Mapa com a localização da ML Odontologia, Rua Cônego Leopoldo, 23, Centro, Carmo do Rio Claro - MG"
+                        src="https://www.google.com/maps?q=Rua+C%C3%B4nego+Leopoldo%2C+23%2C+Centro%2C+Carmo+do+Rio+Claro+-+MG%2C+37150-000&output=embed"
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+
+                </div>
+
+
+               <div class="localizacao-info">
+
+                    <section aria-labelledby="endereco-titulo">
+
+                        <h3 id="endereco-titulo">
+                            Endereço
+                        </h3>
+
+                        <address>
+                            <p>Rua Cônego Leopoldo, 23 – Centro</p>
+                           <p>Carmo do Rio Claro – MG, 37150-000</p>
+                        </address>
+
+                        <a
+                            href="https://www.google.com/maps?q=Rua+C%C3%B4nego+Leopoldo%2C+23%2C+Centro%2C+Carmo+do+Rio+Claro+-+MG%2C+37150-000"
+                            class="localizacao-link"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            Como chegar
+                            <span class="oculto-visualmente">
+                                (abre o Google Maps em nova aba)
+                            </span>
+
+                        </a>
+
+                    </section>
+
+
+                   <section aria-labelledby="horario-titulo">
+
+                        <h3 id="horario-titulo">
+                            Horário de funcionamento
+                        </h3>
+
+                        <table class="localizacao-horario">
+
+                            <caption class="oculto-visualmente">
+                                Horário de funcionamento da ML Odontologia por dia da semana
+                           </caption>
+
+                            <tbody>
+
+                                <tr>
+                                    <th scope="row">Segunda a sexta-feira</th>
+                                    <td>8h às 18h</td>
+                                </tr>
+
+                                <tr>
+                                   <th scope="row">Sábado e domingo</th>
+                                    <td>Fechado</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </section>
+
+               </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==================================================
+        CTA
+        ================================================== -->
+        <section
+            id="contato"
+            class="cta faixa-verde"
+            aria-labelledby="cta-titulo">
+
+            <h2 id="cta-titulo">
+                Agende sua consulta
+            </h2>
+
+           <p class="cta-intro">
+                Preencha os dados abaixo. Nossa equipe confirma o horário
+                escolhido em até 24 horas.
+                Depois, <a href="entrar.html?cadastro=1">crie sua conta</a>
+                ou <a href="entrar.html">entre</a> para acompanhar o pedido.
+            </p>
+
+
+            <form
+                id="formulario-agendamento"
+                class="formulario-agendamento"
+                novalidate
+               aria-describedby="aviso-confirmacao">
+
+                <p id="aviso-campos" class="formulario-legenda">
+                    Os campos marcados com
+                    <span aria-hidden="true">*</span>
+                    <span class="oculto-visualmente">asterisco</span>
+                    são obrigatórios.
+                </p>
+
+
+               <div class="campo">
+
+                    <label for="nome">
+                        Nome completo
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                       name="nome"
+                        autocomplete="name"
+                        autocapitalize="words"
+                        required
+                        aria-required="true"
+                        aria-describedby="erro-nome">
+
+                    <p id="erro-nome" class="campo-erro"></p>
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="telefone">
+                        Telefone
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                       type="tel"
+                        id="telefone"
+                        name="telefone"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        maxlength="15"
+                        required
+                        aria-required="true"
+                        aria-describedby="dica-telefone erro-telefone"
+                        placeholder="(35) 99999-0000">
+                    <p id="dica-telefone" class="campo-dica">
+                        Informe DDD e número, com 10 ou 11 dígitos.
+                    </p>
+
+                    <p id="erro-telefone" class="campo-erro"></p>
+
+                </div>
+
+
+               <div class="campo">
+
+                    <label for="email">
+                        E-mail
+                        <span class="campo-opcional">(opcional)</span>
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                       name="email"
+                        autocomplete="email"
+                        aria-describedby="erro-email"
+                        placeholder="seuemail@exemplo.com">
+
+                    <p id="erro-email" class="campo-erro"></p>
+
+                </div>
+
+
+               <div class="campo">
+
+                    <label for="especialista">
+                        Especialista
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+
+                    <select
+                        id="especialista"
+                        name="especialista"
+                       required
+                        aria-required="true"
+                        aria-describedby="erro-especialista">
+
+                        <option value="">
+                            Selecione um especialista
+                        </option>
+
+                        <option value="Dra. Maria Luiza — Clínica Geral">
+                            Dra. Maria Luiza — Clínica Geral
+                       </option>
+
+                        <option value="Dr. Carlos Silva — Implantodontia">
+                            Dr. Carlos Silva — Implantodontia
+                        </option>
+
+                        <option value="Dra. Ana Costa — Ortodontia">
+                            Dra. Ana Costa — Ortodontia
+                        </option>
+
+                       <option value="Dr. Roberto Mendes — Endodontia">
+                            Dr. Roberto Mendes — Endodontia
+                        </option>
+
+                        <option value="Dra. Julia Souza — Estética Dental">
+                            Dra. Julia Souza — Estética Dental
+                        </option>
+
+                        <option value="Dr. Lucas Lima — Odontopediatria">
+                            Dr. Lucas Lima — Odontopediatria
+                       </option>
+
+                    </select>
+
+                    <p id="erro-especialista" class="campo-erro"></p>
+
+                </div>
+
+
+                <div class="campo">
+                    <label for="data">
+                        Data preferida
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+
+                    <input
+                        type="date"
+                        id="data"
+                        name="data"
+                       required
+                        aria-required="true"
+                        aria-describedby="dica-data erro-data">
+
+                    <p id="dica-data" class="campo-dica">
+                        Atendemos de segunda a sexta-feira.
+                    </p>
+
+                    <p id="erro-data" class="campo-erro"></p>
+
+               </div>
+
+
+                <fieldset class="campo campo-grupo" aria-describedby="erro-turno">
+
+                    <legend>
+                        Turno preferido
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </legend>
+
+                   <div class="opcoes-turno">
+
+                        <label class="opcao-turno">
+                            <input
+                                type="radio"
+                                name="turno"
+                                value="Manhã (8h às 12h)"
+                                required>
+                            Manhã (8h às 12h)
+                        </label>
+                        <label class="opcao-turno">
+                            <input
+                                type="radio"
+                                name="turno"
+                                value="Tarde (13h às 18h)">
+                            Tarde (13h às 18h)
+                        </label>
+
+                    </div>
+                    <p id="erro-turno" class="campo-erro"></p>
+
+                </fieldset>
+
+
+                <div class="campo">
+
+                    <label for="observacoes">
+                        Observações
+                       <span class="campo-opcional">(opcional)</span>
+                    </label>
+
+                    <textarea
+                        id="observacoes"
+                        name="observacoes"
+                        rows="4"
+                        maxlength="300"
+                        aria-describedby="dica-observacoes"></textarea>
+
+                   <p id="dica-observacoes" class="campo-dica">
+                        Conte, se quiser, o motivo da consulta. Até 300 caracteres.
+                    </p>
+
+                </div>
+
+
+                <p id="aviso-confirmacao" class="formulario-aviso">
+                    A confirmação do horário escolhido será enviada em até
+                    <strong>24 horas</strong>
+                   pelo telefone informado.
+                </p>
+
+
+                <button
+                    type="submit"
+                    class="botao botao-cta formulario-enviar">
+
+                    Enviar pedido de agendamento
+
+               </button>
+
+            </form>
+
+
+            <div
+                id="confirmacao-agendamento"
+                class="formulario-sucesso"
+                hidden
+                tabindex="-1"
+               role="status"
+                aria-labelledby="sucesso-titulo">
+
+                <h3 id="sucesso-titulo">
+                    Pedido enviado
+                </h3>
+
+                <p id="sucesso-mensagem"></p>
+
+                <button
+                   type="button"
+                    id="novo-agendamento"
+                    class="botao botao-cta">
+
+                    Fazer outro agendamento
+
+                </button>
+
+            </div>
+
+       </section>
+
+    </main>
+
+
+    <!-- ==================================================
+    RODAPÉ
+    ================================================== -->
+
+    <footer class="rodape">
+        <div class="rodape-conteudo">
+
+
+            <!-- IDENTIDADE -->
+
+            <section class="rodape-coluna rodape-marca" aria-label="Sobre a ML Odontologia">
+
+                <h2>
+                    ML Odontologia
+               </h2>
+
+                <p>
+                    Há mais de 30 anos cuidando da saúde bucal
+                    com experiência, tecnologia e atendimento humanizado.
+                </p>
+
+            </section>
+
+
+           <!-- LINKS -->
+
+            <nav
+                class="rodape-coluna"
+                aria-label="Navegação do rodapé">
+
+                <h3>
+                    Links rápidos
+                </h3>
+
+                <ul>
+
+                    <li>
+                        <a href="#inicio">
+                            Início
+                        </a>
+                    </li>
+
+                    <li>
+                       <a href="#sobre">
+                            Sobre nós
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#diferenciais">
+                            Diferenciais
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#servicos">
+                            Especialidades
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#radiologia">
+                            Radiologia
+                       </a>
+                    </li>
+
+                    <li>
+                        <a href="#equipe">
+                            Equipe
+                        </a>
+                    </li>
+
+                    <li>
+                       <a href="#localizacao">
+                            Localização
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#contato">
+                            Contato
+                        </a>
+                    </li>
+                    <li>
+                        <a href="entrar.html">Entrar</a>
+                    </li>
+                    <li>
+                        <a href="entrar.html?cadastro=1">Criar conta</a>
+                    </li>
+                    <li>
+                        <a href="conta.html">Minha conta</a>
+                    </li>
+                </ul>
+
+            </nav>
+
+
+            <!-- CONTATO -->
+
+            <section class="rodape-coluna" aria-label="Informações de contato">
+
+               <h3>
+                    Entre em contato
+                </h3>
+
+
+                <address>
+
+                    <p>
+                        Carmo do Rio Claro – MG
+                    </p>
+
+                    <p>
+
+                        <a
+                            href="https://wa.me/5535981465030"
+                            target="_blank"
+                            rel="noopener noreferrer">
+
+                            WhatsApp
+                            <span class="oculto-visualmente">
+                                (abre o WhatsApp em nova aba)
+                            </span>
+
+                        </a>
+
+                    </p>
+
+                </address>
+            </section>
+
+        </div>
+
+
+        <!-- PARTE INFERIOR -->
+
+        <div class="rodape-inferior">
+
+           <p>
+                © 2026 ML Odontologia. Todos os direitos reservados.
+            </p>
+
+            <p>
+                Tecnologia e cuidado para o seu sorriso.
+            </p>
+
+        </div>
+
+   </footer>
+
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+   <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="script.js"></script>
+    <script src="mockup.js"></script>
+
+</body>
+
+</html>
