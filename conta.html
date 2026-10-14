@@ -74,7 +74,7 @@
             const caixa = document.getElementById('lista-pedidos');
             caixa.innerHTML = '';
             if (!lista.length) {
-                caixa.innerHTML = '<p>Você ainda não tem pedidos.</p>';
+                caixa.innerHTML = '<p class="lista-vazia">Você ainda não tem pedidos.</p>';
                 return;
             }
             lista.forEach(function (pedido) {

@@ -91,6 +91,10 @@
             const lista = obterPedidos();
             const caixa = document.getElementById('lista-pedidos');
             caixa.innerHTML = '';
+            if (!lista.length) {
+                caixa.innerHTML = '<p class="lista-vazia">Nenhum pedido de consulta no momento.</p>';
+                return;
+            }
             lista.forEach(function (pedido) {
                 const artigo = document.createElement('article');
                 artigo.className = 'pedido';
