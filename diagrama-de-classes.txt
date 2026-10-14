@@ -1,0 +1,228 @@
+ML ODONTOLOGIA
+Diagrama de classes conforme os casos de uso
+Prototipo funcional — site acessivel
+
+
+1. CASOS DE USO CONSIDERADOS
+----------------------------
+Visitante (Usuario)
+- Ver a home
+- Solicitar agendamento de consulta
+- Criar conta de paciente
+- Entrar
+
+Paciente (Usuario logado)
+- Acompanhar os proprios pedidos
+- Cancelar o proprio pedido
+- Sair
+
+Secretaria
+- Listar pedidos
+- Confirmar pedido
+- Cancelar pedido
+- Sair
+
+Administrador
+- Listar pedidos
+- Confirmar pedido
+- Cancelar pedido
+- Excluir pedido
+- Sair
+
+Sistema
+- Autenticar usuario
+- Registrar pedido
+- Persistir status do pedido
+- Manter sessao
+
+
+2. DIAGRAMA DE CLASSES (UML em texto)
+-------------------------------------
+
+                    <<abstrata>>
+                    +------------------+
+                    |     Usuario      |
+                    +------------------+
+                    | - email: String  |
+                    | - senha: String  |
+                    | - nome: String   |
+                    +------------------+
+                    | + entrar()       |
+                    | + sair()         |
+                    +------------------+
+                     /        |        \
+                    /         |         \
+                   /          |          \
+  +----------------+  +---------------+  +------------------+
+  |    Paciente    |  |  Secretaria   |  |  Administrador   |
+  +----------------+  +---------------+  +------------------+
+  | - telefone     |  |               |  |                  |
+  +----------------+  +---------------+  +------------------+
+  | + criarConta() |  | + listarPedidos()                   |
+  | + solicitar    |  | + confirmarPedido()                 |
+  |   Agendamento()|  | + cancelarPedido()                  |
+  | + acompanhar   |  +---------------+  | + excluirPedido()|
+  |   Pedidos()    |                     +------------------+
+  | + cancelar     |
+  |   Pedido()     |
+  +----------------+
+          | 1
+          | solicita
+          | *
+  +------------------------+          +------------------+
+  |   PedidoAgendamento    | *------1 |   Especialista   |
+  +------------------------+  escolhe +------------------+
+  | - id: String           |          | - nome: String   |
+  | - data: Date           |          | - especialidade  |
+  | - turno: String        |          +------------------+
+  | - observacoes: String  |
+  | - status: StatusPedido |
+  +------------------------+
+  | + atualizarStatus()    |
+  +------------------------+
+              |
+              | persiste
+              | *
+        +-----------+
+        |  Sistema  |
+        +-----------+
+        | + autenticarUsuario() |
+        | + registrarPedido()   |
+        | + obterPedidos()      |
+        | + persistirStatus()   |
+        +-----------+
+
+  Usuario 1 -------- 0..1 Sessao
+  PedidoAgendamento -------- StatusPedido
+
+
+  StatusPedido (enumeracao)
+  - Pendente
+  - Confirmado
+  - Cancelado
+
+  Sessao
+  - email: String
+  - nome: String
+  - papel: String
+
+
+3. RELACIONAMENTOS
+------------------
+Usuario <|-- Paciente
+Usuario <|-- Secretaria
+Usuario <|-- Administrador
+
+Paciente (1) solicita (*) PedidoAgendamento
+Secretaria (1) confirma/cancela (*) PedidoAgendamento
+Administrador (1) confirma/cancela/exclui (*) PedidoAgendamento
+PedidoAgendamento (*) escolhe (1) Especialista
+Sistema (1) autentica (*) Usuario
+Sistema (1) persiste (*) PedidoAgendamento
+Usuario (1) mantem (0..1) Sessao
+
+
+4. LIGACAO COM OS CASOS DE USO
+------------------------------
+Caso de uso                         | Classe responsavel
+------------------------------------|------------------------------------------
+Criar conta                         | Paciente + Sistema
+Entrar / Sair                       | Usuario + Sistema + Sessao
+Solicitar agendamento (home)        | Paciente + PedidoAgendamento + Especialista
+Acompanhar pedido                   | Paciente + Sistema
+Cancelar proprio pedido             | Paciente
+Confirmar ou cancelar pedido        | Secretaria e Administrador
+Excluir pedido                      | Administrador
+Guardar status                      | Sistema + StatusPedido
+
+
+5. OBSERVACOES
+--------------
+- O especialista (dentista) nao tem tela propria: so aparece no pedido de consulta.
+- O visitante sem conta usa o formulario da home. O Sistema registra o pedido como Pendente.
+- A Secretaria gerencia confirmacao e cancelamento.
+- O Administrador tem as mesmas acoes da Secretaria e ainda pode excluir o pedido.
+- O Sistema nao tem interface: so autentica, grava pedido e atualiza status.
+
+
+6. CODIGO MERMAID (para colar em mermaid.live ou no Word com complemento)
+-------------------------------------------------------------------------
+classDiagram
+    direction TB
+
+    class Usuario {
+        <<abstrata>>
+        -email: String
+        -senha: String
+        -nome: String
+        +entrar()
+        +sair()
+    }
+
+    class Paciente {
+        -telefone: String
+        +criarConta()
+        +solicitarAgendamento()
+        +acompanharPedidos()
+        +cancelarPedido()
+    }
+
+    class Secretaria {
+        +listarPedidos()
+        +confirmarPedido()
+        +cancelarPedido()
+    }
+
+    class Administrador {
+        +listarPedidos()
+        +confirmarPedido()
+        +cancelarPedido()
+        +excluirPedido()
+    }
+
+    class PedidoAgendamento {
+        -id: String
+        -data: Date
+        -turno: String
+        -observacoes: String
+        -status: StatusPedido
+        +atualizarStatus()
+    }
+
+    class Especialista {
+        -nome: String
+        -especialidade: String
+    }
+
+    class Sistema {
+        +autenticarUsuario()
+        +registrarPedido()
+        +obterPedidos()
+        +persistirStatus()
+    }
+
+    class Sessao {
+        -email: String
+        -nome: String
+        -papel: String
+    }
+
+    class StatusPedido {
+        <<enumeracao>>
+        Pendente
+        Confirmado
+        Cancelado
+    }
+
+    Usuario <|-- Paciente
+    Usuario <|-- Secretaria
+    Usuario <|-- Administrador
+
+    Paciente "1" --> "*" PedidoAgendamento : solicita
+    Secretaria "1" --> "*" PedidoAgendamento : confirma / cancela
+    Administrador "1" --> "*" PedidoAgendamento : confirma / cancela / exclui
+    PedidoAgendamento "*" --> "1" Especialista : escolhe
+    PedidoAgendamento --> StatusPedido
+    Sistema "1" --> "*" Usuario : autentica
+    Sistema "1" --> "*" PedidoAgendamento : persiste
+    Usuario "1" --> "0..1" Sessao : mantem

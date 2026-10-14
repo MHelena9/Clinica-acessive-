@@ -53,34 +53,65 @@
             <h1 id="entrar-titulo">Entrar na sua conta</h1>
             <p class="pagina-intro">Paciente, secretaria e admin entram por aqui. A home continua pública.</p>
             <div class="abas" role="tablist" aria-label="Tipo de acesso">
-                <button type="button" class="aba" id="aba-entrar" role="tab" aria-selected="true" aria-controls="painel-entrar">Entrar</button>
-                <button type="button" class="aba" id="aba-criar" role="tab" aria-selected="false" aria-controls="painel-criar">Criar conta</button>
+                <button type="button" class="aba" id="aba-entrar" role="tab" aria-selected="true" aria-controls="painel-entrar" tabindex="0">Entrar</button>
+                <button type="button" class="aba" id="aba-criar" role="tab" aria-selected="false" aria-controls="painel-criar" tabindex="-1">Criar conta</button>
             </div>
-            <form id="painel-entrar" role="tabpanel" aria-labelledby="aba-entrar">
+            <form id="painel-entrar" role="tabpanel" aria-labelledby="aba-entrar" novalidate>
+                <p class="formulario-legenda">
+                    Os campos marcados com
+                    <span aria-hidden="true">*</span>
+                    <span class="oculto-visualmente">asterisco</span>
+                    são obrigatórios.
+                </p>
                 <div class="campo">
-                    <label for="email-entrar">E-mail</label>
-                    <input type="email" id="email-entrar" autocomplete="username" required>
-                    <p id="erro-entrar" class="campo-erro"></p>
+                    <label for="email-entrar">
+                        E-mail
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+                    <input type="email" id="email-entrar" name="email-entrar" autocomplete="username" required aria-required="true" aria-describedby="erro-email-entrar">
+                    <p id="erro-email-entrar" class="campo-erro"></p>
                 </div>
                 <div class="campo">
-                    <label for="senha-entrar">Senha</label>
-                    <input type="password" id="senha-entrar" autocomplete="current-password" required>
+                    <label for="senha-entrar">
+                        Senha
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+                    <input type="password" id="senha-entrar" name="senha-entrar" autocomplete="current-password" required aria-required="true" aria-describedby="erro-senha-entrar">
+                    <p id="erro-senha-entrar" class="campo-erro"></p>
                 </div>
                 <button type="submit" class="botao botao-dourado" style="width:100%">Entrar</button>
             </form>
-            <form id="painel-criar" role="tabpanel" hidden>
+            <form id="painel-criar" role="tabpanel" aria-labelledby="aba-criar" hidden novalidate>
+                <p class="formulario-legenda">
+                    Os campos marcados com
+                    <span aria-hidden="true">*</span>
+                    <span class="oculto-visualmente">asterisco</span>
+                    são obrigatórios.
+                </p>
                 <div class="campo">
-                    <label for="nome-criar">Nome completo</label>
-                    <input type="text" id="nome-criar" autocomplete="name" required>
+                    <label for="nome-criar">
+                        Nome completo
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+                    <input type="text" id="nome-criar" name="nome-criar" autocomplete="name" autocapitalize="words" required aria-required="true" aria-describedby="erro-nome-criar">
+                    <p id="erro-nome-criar" class="campo-erro"></p>
                 </div>
                 <div class="campo">
-                    <label for="email-criar">E-mail</label>
-                    <input type="email" id="email-criar" autocomplete="email" required>
-                    <p id="erro-criar" class="campo-erro"></p>
+                    <label for="email-criar">
+                        E-mail
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+                    <input type="email" id="email-criar" name="email-criar" autocomplete="email" required aria-required="true" aria-describedby="erro-email-criar">
+                    <p id="erro-email-criar" class="campo-erro"></p>
                 </div>
                 <div class="campo">
-                    <label for="senha-criar">Senha</label>
-                    <input type="password" id="senha-criar" autocomplete="new-password" minlength="6" required>
+                    <label for="senha-criar">
+                        Senha
+                        <span class="campo-obrigatorio" aria-hidden="true">*</span>
+                    </label>
+                    <input type="password" id="senha-criar" name="senha-criar" autocomplete="new-password" minlength="6" required aria-required="true" aria-describedby="dica-senha-criar erro-senha-criar">
+                    <p id="dica-senha-criar" class="campo-dica">Use no mínimo 6 caracteres.</p>
+                    <p id="erro-senha-criar" class="campo-erro"></p>
                 </div>
                 <button type="submit" class="botao botao-dourado" style="width:100%">Criar conta de paciente</button>
             </form>
@@ -104,24 +135,59 @@
         function mostrarAba(entrar) {
             abaEntrar.setAttribute('aria-selected', String(entrar));
             abaCriar.setAttribute('aria-selected', String(!entrar));
+            abaEntrar.tabIndex = entrar ? 0 : -1;
+            abaCriar.tabIndex = entrar ? -1 : 0;
             painelEntrar.hidden = !entrar;
             painelCriar.hidden = entrar;
+            (entrar ? abaEntrar : abaCriar).focus();
+        }
+        function mostrarErro(campo, idErro, mensagem) {
+            const erro = document.getElementById(idErro);
+            campo.setAttribute('aria-invalid', 'true');
+            erro.textContent = mensagem;
+            erro.setAttribute('role', 'alert');
+        }
+        function limparErro(campo, idErro) {
+            const erro = document.getElementById(idErro);
+            campo.removeAttribute('aria-invalid');
+            erro.textContent = '';
+            erro.removeAttribute('role');
         }
         abaEntrar.addEventListener('click', function () { mostrarAba(true); });
         abaCriar.addEventListener('click', function () { mostrarAba(false); });
+        document.querySelector('.abas').addEventListener('keydown', function (evento) {
+            if (evento.key === 'ArrowRight' || evento.key === 'ArrowLeft') {
+                evento.preventDefault();
+                mostrarAba(evento.key === 'ArrowRight' ? abaCriar.getAttribute('aria-selected') === 'true' : abaEntrar.getAttribute('aria-selected') !== 'true');
+            }
+        });
         if (new URLSearchParams(window.location.search).get('cadastro') === '1') {
             mostrarAba(false);
             document.getElementById('nome-criar').focus();
         }
         painelEntrar.addEventListener('submit', function (evento) {
             evento.preventDefault();
-            const email = document.getElementById('email-entrar').value.trim().toLowerCase();
-            const senha = document.getElementById('senha-entrar').value;
-            const erro = document.getElementById('erro-entrar');
+            const campoEmail = document.getElementById('email-entrar');
+            const campoSenha = document.getElementById('senha-entrar');
+            const email = campoEmail.value.trim().toLowerCase();
+            const senha = campoSenha.value;
+            limparErro(campoEmail, 'erro-email-entrar');
+            limparErro(campoSenha, 'erro-senha-entrar');
+            if (email === '' || email.indexOf('@') === -1) {
+                mostrarErro(campoEmail, 'erro-email-entrar', 'Digite um e-mail válido.');
+                campoEmail.focus();
+                return;
+            }
+            if (senha === '') {
+                mostrarErro(campoSenha, 'erro-senha-entrar', 'Digite a senha.');
+                campoSenha.focus();
+                return;
+            }
             const conta = CONTAS[email];
             if (!conta || conta.senha !== senha) {
-                erro.textContent = 'E-mail ou senha não conferem.';
-                document.getElementById('email-entrar').focus();
+                mostrarErro(campoEmail, 'erro-email-entrar', 'E-mail ou senha não conferem.');
+                mostrarErro(campoSenha, 'erro-senha-entrar', 'E-mail ou senha não conferem.');
+                campoEmail.focus();
                 return;
             }
             gravarSessao(email);
@@ -129,13 +195,36 @@
         });
         painelCriar.addEventListener('submit', function (evento) {
             evento.preventDefault();
-            const nome = document.getElementById('nome-criar').value.trim();
-            const email = document.getElementById('email-criar').value.trim().toLowerCase();
+            const campoNome = document.getElementById('nome-criar');
+            const campoEmail = document.getElementById('email-criar');
+            const campoSenha = document.getElementById('senha-criar');
+            const nome = campoNome.value.trim();
+            const email = campoEmail.value.trim().toLowerCase();
+            const senha = campoSenha.value;
+            limparErro(campoNome, 'erro-nome-criar');
+            limparErro(campoEmail, 'erro-email-criar');
+            limparErro(campoSenha, 'erro-senha-criar');
+            let primeiro = null;
             if (nome.length < 3) {
-                document.getElementById('erro-criar').textContent = 'Digite seu nome completo.';
+                mostrarErro(campoNome, 'erro-nome-criar', 'Digite seu nome completo.');
+                primeiro = campoNome;
+            }
+            if (email === '' || email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+                mostrarErro(campoEmail, 'erro-email-criar', 'Digite um e-mail válido, como nome@exemplo.com.');
+                if (!primeiro) primeiro = campoEmail;
+            } else if (CONTAS[email]) {
+                mostrarErro(campoEmail, 'erro-email-criar', 'Este e-mail já possui uma conta. Use Entrar.');
+                if (!primeiro) primeiro = campoEmail;
+            }
+            if (senha.length < 6) {
+                mostrarErro(campoSenha, 'erro-senha-criar', 'A senha precisa ter no mínimo 6 caracteres.');
+                if (!primeiro) primeiro = campoSenha;
+            }
+            if (primeiro) {
+                primeiro.focus();
                 return;
             }
-            CONTAS[email] = { senha: document.getElementById('senha-criar').value, nome: nome, papel: 'paciente' };
+            CONTAS[email] = { senha: senha, nome: nome, papel: 'paciente' };
             gravarSessao(email);
             irParaArea('paciente');
         });
