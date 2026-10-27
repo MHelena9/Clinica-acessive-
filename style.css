@@ -671,44 +671,42 @@ GALERIA
 }
 
 .galeria-lista {
-  display: flex;
-  flex-wrap: wrap;
-
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: 22px;
-
   list-style: none;
 }
 
 .galeria-item {
- flex: 1 1 300px;
-
+  min-width: 0;
   overflow: hidden;
-
-  border-radius: 22px;
-
+  border-radius: 18px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
 }
 
-.galeria-item--grande {
- flex: 2 1 620px;
+.galeria-figura {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+  background: var(--branco);
 }
 
 .galeria-item img {
   width: 100%;
-
-  height: 280px;
-
+  height: 240px;
   object-fit: cover;
-
- transition: transform 0.45s;
-
+  transition: transform 0.45s;
 }
 
-.galeria-item--grande img {
-  height: 420px;
+.galeria-item figcaption {
+  flex: 1;
+  padding: 16px 18px;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
-.galeria-item img:hover {
+.galeria-item:hover img {
   transform: scale(1.05);
 }
 
@@ -1092,30 +1090,24 @@ RADIOLOGIA
 /* SCANNER — decorativo, marcado com aria-hidden no HTML */
 
 .scan-line {
- position: absolute;
-
+  position: absolute;
   top: 0;
-  left: 0;
-
-  width: 100%;
-
-  height: 2px;
-
+  left: 15%;
+  width: 70%;
+  height: 1px;
   background: #00ffcc;
-  box-shadow: 0 0 10px #00ffcc;
-
+  box-shadow: 0 0 6px #00ffcc;
   z-index: 3;
-
-  animation: scan 3s linear infinite;
+  animation: scan 8s ease-in-out infinite;
 }
 
 @keyframes scan {
   0% {
-   top: 0;
+    top: 0;
   }
 
   50% {
-    top: 100%;
+    top: calc(100% - 1px);
   }
 
   100% {
