@@ -6,18 +6,20 @@
 const botaoMenu = document.querySelector('.menu-alternar');
 const listaMenu = document.getElementById('menu-lista-principal');
 
-botaoMenu.addEventListener('click', function () {
-    const aberto = botaoMenu.getAttribute('aria-expanded') === 'true';
-    botaoMenu.setAttribute('aria-expanded', String(!aberto));
-    listaMenu.classList.toggle('menu-lista--aberto');
-});
+if (botaoMenu && listaMenu) {
+    botaoMenu.addEventListener('click', function () {
+        const aberto = botaoMenu.getAttribute('aria-expanded') === 'true';
+        botaoMenu.setAttribute('aria-expanded', String(!aberto));
+        listaMenu.classList.toggle('menu-lista--aberto');
+    });
 
-listaMenu.addEventListener('click', function (evento) {
-    if (evento.target.tagName === 'A') {
-        botaoMenu.setAttribute('aria-expanded', 'false');
-        listaMenu.classList.remove('menu-lista--aberto');
-   }
-});
+    listaMenu.addEventListener('click', function (evento) {
+        if (evento.target.tagName === 'A') {
+            botaoMenu.setAttribute('aria-expanded', 'false');
+            listaMenu.classList.remove('menu-lista--aberto');
+        }
+    });
+}
 
 
 // ==================================================
@@ -80,6 +82,7 @@ function aplicarTamanhoTexto() {
 }
 
 function sincronizarContraste() {
+    if (!botaoContraste) return;
     const ativo = pagina.classList.contains('contraste-alto');
     botaoContraste.setAttribute('aria-pressed', String(ativo));
 }
@@ -114,23 +117,27 @@ botaoAumentarTexto.addEventListener('click', function () {
     anunciarAcessibilidade('Tamanho do texto aumentado.');
 });
 
-botaoContraste.addEventListener('click', function () {
-    const ativo = pagina.classList.toggle('contraste-alto');
+if (botaoContraste) {
+    botaoContraste.addEventListener('click', function () {
+        const ativo = pagina.classList.toggle('contraste-alto');
 
-    botaoContraste.setAttribute('aria-pressed', String(ativo));
+        botaoContraste.setAttribute('aria-pressed', String(ativo));
 
-    try {
-        localStorage.setItem('acessibilidade-contraste', ativo ? '1' : '0');
-    } catch (erro) {
-       // Sem localStorage, a escolha vale só enquanto a página estiver aberta
-    }
+        try {
+            localStorage.setItem('acessibilidade-contraste', ativo ? '1' : '0');
+        } catch (erro) {
+           // Sem localStorage, a escolha vale só enquanto a página estiver aberta
+        }
 
-    if (ativo) {
-        anunciarAcessibilidade('Alto contraste ativado.');
-    } else {
-        anunciarAcessibilidade('Cores originais restauradas.');
-    }
-});
+        if (ativo) {
+            anunciarAcessibilidade('Alto contraste ativado.');
+        } else {
+            anunciarAcessibilidade('Cores originais restauradas.');
+        }
+    });
+}
+
+window.mlAcessibilidadePronta = true;
 
 botaoLibras.addEventListener('click', function () {
     const host = hostVLibras();

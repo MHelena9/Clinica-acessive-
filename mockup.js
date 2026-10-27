@@ -21,41 +21,50 @@
         botaoContraste.setAttribute('aria-pressed', String(pagina.classList.contains('contraste-alto')));
     }
 
-    if (botaoMenos) {
-        botaoMenos.addEventListener('click', function () {
-            if (tamanho === 0) {
-                anunciar('O texto já está no tamanho padrão.');
-                return;
-            }
-            tamanho -= 1;
-            pagina.classList.remove('texto-medio', 'texto-grande');
-            if (tamanho === 1) pagina.classList.add('texto-medio');
-            try { localStorage.setItem('acessibilidade-texto', String(tamanho)); } catch (erro) {}
-            anunciar('Tamanho do texto diminuído.');
-        });
+    // A home carrega script.js e mockup.js. Dois ouvintes no mesmo botão ligam e desligam o contraste no mesmo clique.
+    let scriptPrincipalNaPagina = !!window.mlAcessibilidadePronta;
+    const scriptsDaPagina = document.getElementsByTagName('script');
+    for (let i = 0; i < scriptsDaPagina.length; i++) {
+        const origem = scriptsDaPagina[i].getAttribute('src') || '';
+        if (origem.indexOf('script.js') !== -1) scriptPrincipalNaPagina = true;
     }
+    if (!scriptPrincipalNaPagina) {
+        if (botaoMenos) {
+            botaoMenos.addEventListener('click', function () {
+                if (tamanho === 0) {
+                    anunciar('O texto já está no tamanho padrão.');
+                    return;
+                }
+                tamanho -= 1;
+                pagina.classList.remove('texto-medio', 'texto-grande');
+                if (tamanho === 1) pagina.classList.add('texto-medio');
+                try { localStorage.setItem('acessibilidade-texto', String(tamanho)); } catch (erro) {}
+                anunciar('Tamanho do texto diminuído.');
+            });
+        }
 
-    if (botaoMais) {
-        botaoMais.addEventListener('click', function () {
-            if (tamanho === 2) {
-                anunciar('O texto já está no tamanho máximo.');
-                return;
-            }
-            tamanho += 1;
-            pagina.classList.remove('texto-medio', 'texto-grande');
-            pagina.classList.add(tamanho === 1 ? 'texto-medio' : 'texto-grande');
-            try { localStorage.setItem('acessibilidade-texto', String(tamanho)); } catch (erro) {}
-            anunciar('Tamanho do texto aumentado.');
-        });
-    }
+        if (botaoMais) {
+            botaoMais.addEventListener('click', function () {
+                if (tamanho === 2) {
+                    anunciar('O texto já está no tamanho máximo.');
+                    return;
+                }
+                tamanho += 1;
+                pagina.classList.remove('texto-medio', 'texto-grande');
+                pagina.classList.add(tamanho === 1 ? 'texto-medio' : 'texto-grande');
+                try { localStorage.setItem('acessibilidade-texto', String(tamanho)); } catch (erro) {}
+                anunciar('Tamanho do texto aumentado.');
+            });
+        }
 
-    if (botaoContraste) {
-        botaoContraste.addEventListener('click', function () {
-            const ativo = pagina.classList.toggle('contraste-alto');
-            botaoContraste.setAttribute('aria-pressed', String(ativo));
-            try { localStorage.setItem('acessibilidade-contraste', ativo ? '1' : '0'); } catch (erro) {}
-            anunciar(ativo ? 'Alto contraste ativado.' : 'Cores originais restauradas.');
-        });
+        if (botaoContraste) {
+            botaoContraste.addEventListener('click', function () {
+                const ativo = pagina.classList.toggle('contraste-alto');
+                botaoContraste.setAttribute('aria-pressed', String(ativo));
+                try { localStorage.setItem('acessibilidade-contraste', ativo ? '1' : '0'); } catch (erro) {}
+                anunciar(ativo ? 'Alto contraste ativado.' : 'Cores originais restauradas.');
+            });
+        }
     }
 
     const botaoSair = document.getElementById('botao-sair');
