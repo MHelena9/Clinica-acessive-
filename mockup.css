@@ -50,16 +50,24 @@ a { color: inherit; }
   position: absolute;
   top: -60px;
   left: 16px;
-  background: var(--verde);
-  color: var(--branco);
+  background: var(--branco);
+  color: var(--verde);
   padding: 12px 20px;
   border-radius: 8px;
-  font-weight: 600;
+  border: 2px solid var(--dourado);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  font-weight: 700;
   text-decoration: none;
   z-index: 1000;
 }
 
-.pular-link:focus { top: 8px; }
+.pular-link:focus,
+.pular-link:focus-visible {
+  top: 8px;
+  z-index: 1100;
+  outline: 3px solid var(--dourado);
+  outline-offset: 3px;
+}
 
 a:focus-visible,
 button:focus-visible,
@@ -124,6 +132,18 @@ select:focus-visible,
 .barra-acessibilidade button[aria-pressed="true"] {
   background: rgba(255, 255, 255, 0.14);
   border-color: var(--dourado);
+}
+
+#acessibilidade-aumentar {
+  font-size: 0.95rem;
+}
+
+[vw] {
+  display: none !important;
+}
+
+html:not(.libras-ativo) .vlibras-flutuante {
+  display: none !important;
 }
 
 .cabecalho {

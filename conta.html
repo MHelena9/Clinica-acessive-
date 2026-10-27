@@ -7,7 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="mockup.css">
+    <link rel="stylesheet" href="mockup.css?v=a11y">
     <script>
         (function () {
             try {
@@ -30,6 +30,8 @@
                     <li><button type="button" id="acessibilidade-diminuir" aria-label="Diminuir tamanho do texto">A-</button></li>
                     <li><button type="button" id="acessibilidade-aumentar" aria-label="Aumentar tamanho do texto">A+</button></li>
                     <li><button type="button" id="acessibilidade-contraste" aria-pressed="false" aria-label="Alternar contraste de cores">Contraste</button></li>
+                    <li><button type="button" id="acessibilidade-libras" aria-pressed="false" aria-label="Ativar tradutor de Libras">Libras</button></li>
+                    <li><button type="button" id="acessibilidade-leitor" aria-pressed="false" aria-label="Ativar ou pausar leitura em voz alta da página">Leitor de tela</button></li>
                 </ul>
             </nav>
             <p id="acessibilidade-status" class="oculto-visualmente" aria-live="polite"></p>
@@ -57,7 +59,14 @@
         <a class="botao botao-dourado" href="index.html#contato">Novo pedido na home</a>
     </main>
     <footer class="rodape"><p class="rodape-inferior">© 2026 ML Odontologia.</p></footer>
-    <script src="mockup.js"></script>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script src="mockup.js?v=a11y"></script>
     <script>
         const usuario = obterSessao() || { nome: 'Ana Souza', papel: 'paciente' };
         document.getElementById('chip-usuario').textContent = usuario.nome;

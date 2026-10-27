@@ -65,6 +65,84 @@
                 anunciar(ativo ? 'Alto contraste ativado.' : 'Cores originais restauradas.');
             });
         }
+
+        const botaoLibras = document.getElementById('acessibilidade-libras');
+        const botaoLeitor = document.getElementById('acessibilidade-leitor');
+        let leituraAtiva = false;
+
+        function hostVLibras() {
+            const elementos = document.querySelectorAll('div');
+            for (let i = 0; i < elementos.length; i++) {
+                const sombra = elementos[i].shadowRoot;
+                if (sombra && sombra.getElementById('vlibras-button')) {
+                    return elementos[i];
+                }
+            }
+            return null;
+        }
+
+        function marcarHostVLibras() {
+            const host = hostVLibras();
+            if (host) host.classList.add('vlibras-flutuante');
+        }
+
+        if (botaoLibras) {
+            botaoLibras.addEventListener('click', function () {
+                const host = hostVLibras();
+                if (!host) {
+                    anunciar('O tradutor de Libras não carregou. Verifique sua conexão com a internet.');
+                    return;
+                }
+                const botaoVLibras = host.shadowRoot.getElementById('vlibras-button');
+                const ativo = botaoLibras.getAttribute('aria-pressed') !== 'true';
+                if (ativo) pagina.classList.add('libras-ativo');
+                botaoVLibras.click();
+                botaoLibras.setAttribute('aria-pressed', String(ativo));
+                if (ativo) {
+                    anunciar('Tradutor de Libras ativado.');
+                } else {
+                    pagina.classList.remove('libras-ativo');
+                    anunciar('Tradutor de Libras fechado.');
+                }
+            });
+        }
+
+        if (botaoLeitor) {
+            botaoLeitor.addEventListener('click', function () {
+                if (!window.speechSynthesis) {
+                    anunciar('Seu navegador não oferece leitura em voz alta.');
+                    return;
+                }
+                if (leituraAtiva) {
+                    speechSynthesis.cancel();
+                    leituraAtiva = false;
+                    botaoLeitor.setAttribute('aria-pressed', 'false');
+                    anunciar('Leitura em voz alta interrompida.');
+                    return;
+                }
+                const conteudo = document.getElementById('conteudo-principal');
+                const fala = new SpeechSynthesisUtterance(conteudo ? conteudo.innerText : document.body.innerText);
+                fala.lang = 'pt-BR';
+                fala.rate = 1;
+                fala.onend = function () {
+                    leituraAtiva = false;
+                    botaoLeitor.setAttribute('aria-pressed', 'false');
+                    anunciar('Leitura em voz alta concluída.');
+                };
+                leituraAtiva = true;
+                botaoLeitor.setAttribute('aria-pressed', 'true');
+                anunciar('Leitura em voz alta iniciada.');
+                speechSynthesis.speak(fala);
+            });
+        }
+
+        if (window.VLibras) {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        }
+        window.addEventListener('load', function () {
+            marcarHostVLibras();
+            setTimeout(marcarHostVLibras, 1000);
+        });
     }
 
     const botaoSair = document.getElementById('botao-sair');
